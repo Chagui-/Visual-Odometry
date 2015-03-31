@@ -1,0 +1,45 @@
+﻿Build started 31/03/2015 19:48:43.
+     1>Project "A:\Mis Documentos\Dropbox\Proyectos\Visual Odometry_notebook\Test1\Test3\Test3.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Test3.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FMFlann.cpp FRSurf.cpp FRSurfGpu.cpp ImageFeatures.cpp main.cpp RANSAC.cpp StereoImage.cpp VO3D3D.cpp VOMachine.cpp
+         VOMachine.cpp
+         VO3D3D.cpp
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\ransac.h(17): warning C4091: 'static ' : ignored on left of 'RANSAC' when no variable is declared
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\vo3d3d.cpp(82): warning C4018: '<' : signed/unsigned mismatch
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\vo3d3d.cpp(93): warning C4305: 'argument' : truncation from 'int' to 'bool'
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\vo3d3d.cpp(94): warning C4305: 'argument' : truncation from 'int' to 'bool'
+         StereoImage.cpp
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\stereoimage.cpp(31): warning C4018: '<' : signed/unsigned mismatch
+         RANSAC.cpp
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\ransac.h(17): warning C4091: 'static ' : ignored on left of 'RANSAC' when no variable is declared
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\ransac.cpp(16): warning C4018: '<' : signed/unsigned mismatch
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\ransac.cpp(45): warning C4018: '<' : signed/unsigned mismatch
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\ransac.cpp(54): warning C4018: '<' : signed/unsigned mismatch
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\ransac.cpp(130): warning C4018: '<' : signed/unsigned mismatch
+         main.cpp
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\main.cpp(85): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
+     1>a:\mis documentos\dropbox\proyectos\visual odometry_notebook\test1\test3\main.cpp(88): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
+         ImageFeatures.cpp
+         FRSurfGpu.cpp
+         FRSurf.cpp
+         FMFlann.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"A:\Mis Documentos\Dropbox\Proyectos\Visual Odometry_notebook\Test1\Debug\Visual Odometry.exe" /INCREMENTAL /NOLOGO opencv_core249d.lib opencv_imgproc249d.lib opencv_highgui249d.lib opencv_ml249d.lib opencv_video249d.lib opencv_features2d249d.lib opencv_calib3d249d.lib opencv_objdetect249d.lib opencv_contrib249d.lib opencv_legacy249d.lib opencv_flann249d.lib opencv_nonfree249d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"A:\Mis Documentos\Dropbox\Proyectos\Visual Odometry_notebook\Test1\Debug\Visual Odometry.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"A:\Mis Documentos\Dropbox\Proyectos\Visual Odometry_notebook\Test1\Debug\Visual Odometry.lib" /MACHINE:X86 Debug\FMFlann.obj
+         Debug\FRSurf.obj
+         Debug\FRSurfGpu.obj
+         Debug\ImageFeatures.obj
+         Debug\main.obj
+         Debug\RANSAC.obj
+         Debug\StereoImage.obj
+         Debug\VO3D3D.obj
+         Debug\VOMachine.obj
+         Test3.vcxproj -> A:\Mis Documentos\Dropbox\Proyectos\Visual Odometry_notebook\Test1\Debug\Visual Odometry.exe
+     1>Done Building Project "A:\Mis Documentos\Dropbox\Proyectos\Visual Odometry_notebook\Test1\Test3\Test3.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.25
