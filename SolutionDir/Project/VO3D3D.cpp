@@ -9,7 +9,7 @@
 #include "RANSAC.h"
 
 
-VO3D3D::VO3D3D(FRAlgorithm* fr_algorithm, FMAlgorithm* fm_algorithm, Camera camera) :
+VO3D3D::VO3D3D(FRAlgorithm* fr_algorithm, FMAlgorithm* fm_algorithm, Camera* camera) :
 	VOAlgorithm(fr_algorithm, fm_algorithm, camera) {
 }
 
@@ -17,11 +17,22 @@ VO3D3D::~VO3D3D(){}
 
 CameraImage* VO3D3D::getNextFrame(ImagePkg* pkg){
 	StereoImage* img = new StereoImage();
+
+	//if (m_camera->getProperties().getDistortionCoefsLeft().data != nullptr && m_camera->getProperties().getDistortionCoefsRight().data != nullptr){
+	//	Mat l_undistorted;
+	//	Mat r_undistorted;
+	//	undistort(*pkg->images[0], l_undistorted, m_camera->getCameraMatrix_pixels(), m_camera->getProperties().getDistortionCoefsLeft());
+	//	undistort(*pkg->images[1], r_undistorted, m_camera->getCameraMatrix_pixels(), m_camera->getProperties().getDistortionCoefsRight());
+
+	//	*pkg->images[0] = l_undistorted;
+	//	*pkg->images[1] = r_undistorted;
+	//}
+
 	img->computeFeatures(m_fr_algorithm, m_fm_algorithm, pkg->images[0], pkg->images[1]);
 	
 	filterBadResultsTriangulation(img);
 
-	img->triangulate(m_camera);
+	img->triangulate(*m_camera);
 
 	return img;
 }
@@ -41,40 +52,7 @@ Mat VO3D3D::getCameraMovement(CameraImage* t0, CameraImage* t1, ImagePkg* data, 
 	filterBadResults(img_t0->getImagFeaturesLeft()->getDescriptors(),
 		matches, good_matches);
 	
-	//Mat img_2 = *(data->images[0]);
-	//Mat img_1 = *(last_data->images[0]);
-	//Mat img_matches = *(data->images[0]);
-	//cvtColor(img_matches, img_matches, CV_GRAY2RGB);
-
-	//drawMatches(img_1, img_t0->getImagFeaturesLeft()->getKeypoints(), img_2, img_t1->getImagFeaturesLeft()->getKeypoints(),
-	//	good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
-	//	vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
-	//
-	//std::map<long, Point3f> coords_00 = img_t0->getCoordinates();
-	//std::map<long, Point3f> coords_10 = img_t1->getCoordinates();
-
-	//for (int i = 0; i < good_matches.size(); i++)	{
-	//	std::map<long, Point3f>::iterator it_0 = coords_00.find(good_matches[i].queryIdx);
-	//	std::map<long, Point3f>::iterator it_1 = coords_10.find(good_matches[i].trainIdx);
-	//	if (it_0 == coords_00.end() || it_1 == coords_10.end()){
-	//		//printf("point not found\n");
-	//		Point2f point_2d = img_t0->getImagFeaturesLeft()->getKeypoints()[good_matches[i].queryIdx].pt;
-	//		circle(img_matches, point_2d, 3, Scalar(255, 0, 0), 4);
-	//	}
-	//	else{
-	//		Point2f point_2d = img_t0->getImagFeaturesLeft()->getKeypoints()[good_matches[i].queryIdx].pt;
-	//		circle(img_matches, point_2d, 3, Scalar(0, 0, 255), 4);
-	//	}
-	//}	
-
-	//int scale = 70;
-	//int method = scale / 100.f < 1 ? INTER_AREA : INTER_CUBIC;
-	//resize(img_matches, img_matches, Size(), scale / 100.f, scale / 100.f, method);
-	//imshow("Left Image", img_matches);
-	//waitKey(0);
-
-	//Get {X} and {Y}
-	//Calculate centroids u_x, u_y
+	//Get {X} and {Y}, and validate matches between images
 	std::map<long, Point3f> coords_0 = img_t0->getCoordinates();
 	std::map<long, Point3f> coords_1 = img_t1->getCoordinates();
 
@@ -97,14 +75,14 @@ Mat VO3D3D::getCameraMovement(CameraImage* t0, CameraImage* t1, ImagePkg* data, 
 		X.push_back(x);
 		Y.push_back(y);
 	}
-	if (X.size() < 8){
+	if (X.size() < 5){
 		printf("-----No enough features-----\n");
 		return Mat::eye(4, 4, CV_32FC1);
 	}
 		
 	//Apply RANSAC
 
-	Mat m = RANSAC::compute(X, Y, 0.1f);
+	Mat m = RANSAC::compute(X, Y);
 	//Mat m = RANSAC::getTransformationMatrix(X, Y);
 		
 	return m;
@@ -121,7 +99,7 @@ void VO3D3D::filterBadResults(Mat* descriptors_0, std::vector<DMatch> matches, s
 	}
 	
 	for (long i = 0; i < descriptors_0->rows; i++)	{
-		if (matches[i].distance <= max(10.f*min_dist, 0.02))	{
+		if (matches[i].distance <= max(15.f*min_dist, 0.02))	{
 			good_matches.push_back(matches[i]);
 		}
 	}
@@ -144,7 +122,7 @@ void VO3D3D::filterBadResultsTriangulation(StereoImage* img){
 	}
 
 	for (long i = 0; i < descriptors_0->rows; i++)	{
-		if (matches[i].distance <= max(10.f*min_dist, 0.02))	{
+		if (matches[i].distance <= max(40.f*min_dist, 0.02))	{
 			//the found keypoints must have similar y coordinates
 			//and their x coordinates difference must be no more than 240px(1m)
 			//and no less than 2.43px(100m)

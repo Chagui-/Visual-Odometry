@@ -9,11 +9,11 @@ class VOAlgorithm{
 protected:
 	FRAlgorithm* m_fr_algorithm;
 	FMAlgorithm* m_fm_algorithm;
-	Camera m_camera;
+	Camera* m_camera;
 
 public:
 
-	VOAlgorithm(FRAlgorithm* fr_algorithm, FMAlgorithm* fm_algorithm, Camera camera):
+	VOAlgorithm(FRAlgorithm* fr_algorithm, FMAlgorithm* fm_algorithm, Camera* camera):
 		m_camera(camera), m_fr_algorithm(fr_algorithm), m_fm_algorithm(fm_algorithm){
 	}
 

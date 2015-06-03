@@ -1,5 +1,31 @@
-﻿Build started 31/03/2015 20:02:14.
+﻿Build started 20-05-2015 22:38:50.
+     1>Project "A:\Mis Documentos\Dropbox\Proyectos\Visual-Odometry\SolutionDir\Project\Project.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Test3.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Programas\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>a:\mis documentos\dropbox\proyectos\visual-odometry\solutiondir\project\camera.h(31): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>a:\mis documentos\dropbox\proyectos\visual-odometry\solutiondir\project\camera.h(32): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>a:\mis documentos\dropbox\proyectos\visual-odometry\solutiondir\project\camera.h(47): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>a:\mis documentos\dropbox\proyectos\visual-odometry\solutiondir\project\main.cpp(111): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\programas\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
+     1>a:\mis documentos\dropbox\proyectos\visual-odometry\solutiondir\project\main.cpp(162): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\programas\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
+     1>a:\mis documentos\dropbox\proyectos\visual-odometry\solutiondir\project\main.cpp(165): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\programas\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
+       Link:
+         C:\Programas\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"A:\Mis Documentos\Dropbox\Proyectos\Visual-Odometry\SolutionDir\Debug\Visual Odometry.exe" /INCREMENTAL /NOLOGO opencv_core249d.lib opencv_imgproc249d.lib opencv_highgui249d.lib opencv_ml249d.lib opencv_video249d.lib opencv_features2d249d.lib opencv_calib3d249d.lib opencv_objdetect249d.lib opencv_contrib249d.lib opencv_legacy249d.lib opencv_flann249d.lib opencv_nonfree249d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"A:\Mis Documentos\Dropbox\Proyectos\Visual-Odometry\SolutionDir\Debug\Visual Odometry.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"A:\Mis Documentos\Dropbox\Proyectos\Visual-Odometry\SolutionDir\Debug\Visual Odometry.lib" /MACHINE:X86 Debug\FMFlann.obj
+         Debug\FRSurf.obj
+         Debug\FRSurfGpu.obj
+         Debug\ImageFeatures.obj
+         Debug\main.obj
+         Debug\RANSAC.obj
+         Debug\StereoImage.obj
+         Debug\VO3D3D.obj
+         Debug\VOMachine.obj
+         Project.vcxproj -> A:\Mis Documentos\Dropbox\Proyectos\Visual-Odometry\SolutionDir\Debug\Visual Odometry.exe
+     1>Done Building Project "A:\Mis Documentos\Dropbox\Proyectos\Visual-Odometry\SolutionDir\Project\Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.02
+Time Elapsed 00:00:01.79

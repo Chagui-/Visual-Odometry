@@ -18,9 +18,9 @@ Point3f StereoImage::triangluatePoint(Camera c, Point2f p1, Point2f p2){
 	Point2f pp1 = c.pixels2mm(p1);
 	Point2f pp2 = c.pixels2mm(p2);
 	//NOTE: max disparity is 0.912mm for 1m depth
-	output.z = c.getProperties().getFocalLength_mm() * c.getProperties().getDistanceBetweenLenses_mm() / (pp1.x - pp2.x);
-	output.x = pp1.x * output.z / c.getProperties().getFocalLength_mm();
-	output.y = pp1.y * output.z / c.getProperties().getFocalLength_mm();
+	output.z = c.getProperties().getFocalLength_mm().x * c.getProperties().getDistanceBetweenLenses_mm() / (pp1.x - pp2.x);
+	output.x = pp1.x * output.z / c.getProperties().getFocalLength_mm().x;
+	output.y = pp1.y * output.z / c.getProperties().getFocalLength_mm().y;
 
 	output *= 0.001f; // to meters
 	

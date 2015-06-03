@@ -3,8 +3,15 @@
 
 int myrandom(int i) { return std::rand() % i; }
 
-Mat RANSAC::compute(std::vector<Mat>& X, std::vector<Mat>& Y, float margin){
-	static int max_iterations = 400;
+int RANSAC::m_max_iterations = 400;
+float RANSAC::m_margin = 0.1f;
+
+void RANSAC::initialize(int max_iterations, float margin){
+	m_max_iterations = max_iterations;
+	m_margin = margin;
+}
+
+Mat RANSAC::compute(std::vector<Mat>& X, std::vector<Mat>& Y){
 	static int num_points = 5;
 	Mat T = Mat::eye(4, 4, CV_32FC1);
 	Mat best_T = Mat::eye(4, 4, CV_32FC1);
@@ -14,7 +21,7 @@ Mat RANSAC::compute(std::vector<Mat>& X, std::vector<Mat>& Y, float margin){
 
 	std::vector<int> indices;
 	for (int i = 0; i < X.size(); ++i) indices.push_back(i);
-	for (int i = 0; i < max_iterations; i++){
+	for (int i = 0; i < m_max_iterations; i++){
 		//get random points
 		std::random_shuffle(indices.begin(), indices.end(), myrandom);
 		std::vector<Mat> new_X;
@@ -25,7 +32,7 @@ Mat RANSAC::compute(std::vector<Mat>& X, std::vector<Mat>& Y, float margin){
 		}
 		//compute T
 		T = getTransformationMatrix(new_X, new_Y);
-		int inliers = countInliers(T,X,Y,margin);
+		int inliers = countInliers(T, X, Y, m_margin);
 
 		if (inliers > max_inliers){
 			best_T = T;
@@ -128,7 +135,7 @@ Mat RANSAC::getTransformationMatrix(std::vector<Mat>& X, std::vector<Mat>& Y){
 int RANSAC::countInliers(Mat T, std::vector<Mat>& X, std::vector<Mat>& Y, float margin){
 	int num_inliers = 0;
 	for (int i = 0; i < X.size(); i++){
-		Mat y = Mat::ones(4, 1, CV_32FC1); Y[i];
+		Mat y = Mat::ones(4, 1, CV_32FC1);
 		y.at<float>(0) = Y[i].at<float>(0);
 		y.at<float>(1) = Y[i].at<float>(1);
 		y.at<float>(2) = Y[i].at<float>(2);

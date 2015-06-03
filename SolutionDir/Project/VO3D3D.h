@@ -10,7 +10,7 @@ private:
 	void filterBadResultsTriangulation(StereoImage* img);
 
 public:
-	VO3D3D(FRAlgorithm* fr_algorithm, FMAlgorithm* fm_algorithm, Camera camera);
+	VO3D3D(FRAlgorithm* fr_algorithm, FMAlgorithm* fm_algorithm, Camera* camera);
 	~VO3D3D();
 
 	CameraImage* getNextFrame(ImagePkg* pkg);
