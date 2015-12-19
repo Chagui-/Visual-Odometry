@@ -24,12 +24,16 @@ int main(int argc, char** argv){
 	//Variable declaration
 	Mat img_1, img_2;
 
+	int x = 2;
+	int y = 3;
+	int z = ((x++)*(x++)) + ((++y)*(++y));
+
 	//suscribe to ros topic for images
 	// 	
 	
 	FRSurf fr_surf(500);
 	FMFlann fm_flann;
-	Camera camera("BumbleBee XB3 13S2C-38", 3.8f, 3.75f, 1280, 960, 1280 / 2, 960/2, 240.f);
+	Camera camera("BumbleBee XB3 13S2C-38", 3.8f, 3.75f, 1280, 960, 1280 / 2, 960/2, 239.6f);
 	VO3D3D vo_3d3d(&fr_surf, &fm_flann, &camera);
 	RANSAC::initialize();
 

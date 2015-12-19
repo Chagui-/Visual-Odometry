@@ -12,7 +12,7 @@ void RANSAC::initialize(int max_iterations, float margin){
 }
 
 Mat RANSAC::compute(std::vector<Mat>& X, std::vector<Mat>& Y){
-	static int num_points = 5;
+	static int num_points = 6;
 	Mat T = Mat::eye(4, 4, CV_32FC1);
 	Mat best_T = Mat::eye(4, 4, CV_32FC1);
 
